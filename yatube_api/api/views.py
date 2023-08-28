@@ -1,15 +1,15 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import filters, permissions, viewsets
+from rest_framework import filters, mixins, permissions, viewsets
 from rest_framework.pagination import LimitOffsetPagination
 
 from api.permissions import IsAuthorOrReadOnly
 from api.serializers import (
-    PostSerializer,
     CommentSerializer,
+    FollowSerializer,
     GroupSerializer,
-    FollowSerializer
+    PostSerializer,
 )
-from posts.models import Post, Comment, Group, Follow
+from posts.models import Comment, Follow, Group, Post
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -59,10 +59,13 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class FollowWiewSet(viewsets.ModelViewSet):
+class FollowWiewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
     """ViewSet модели Follow"""
 
-    queryset = Follow.objects.all()
     serializer_class = FollowSerializer
     permission_classes = (
         permissions.IsAuthenticated, IsAuthorOrReadOnly
@@ -76,4 +79,4 @@ class FollowWiewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         """Переопределение метода create"""
-        return serializer.save(user=self.request.user,)
+        return serializer.save(user=self.request.user)

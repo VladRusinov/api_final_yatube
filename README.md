@@ -1,3 +1,9 @@
+### О проекте:
+Проект yatube_api реализует api для проекта yatube,
+
+### использованные технологии:
+при создании проекта использовался django_rest_framework
+
 ### Как запустить проект:
 
 Клонировать репозиторий и перейти в него в командной строке:
@@ -50,19 +56,19 @@ python3 manage.py runserver
 
 ```
 {
-"count": 123,
-"next": "http://api.example.org/accounts/?offset=400&limit=100",
-"previous": "http://api.example.org/accounts/?offset=200&limit=100",
-"results": [
-{
-"id": 0,
-"author": "string",
-"text": "string",
-"pub_date": "2021-10-14T20:41:29.648Z",
-"image": "string",
-"group": 0
-}
-]
+    "count": 123,
+    "next": "http://api.example.org/accounts/?offset=400&limit=100",
+    "previous": "http://api.example.org/accounts/?offset=200&limit=100",
+    "results": [
+        {
+            "id": 0,
+            "author": "string",
+            "text": "string",
+            "pub_date": "2021-10-14T20:41:29.648Z",
+            "image": "string",
+            "group": 0
+        }
+    ]
 }
 ```
 
@@ -73,10 +79,10 @@ python3 manage.py runserver
 Ответ
 ```
 {
-"id": 0,
-"author": "string",
-"text": "string",
-"created": "2019-08-24T14:15:22Z",
-"post": 0
+    "id": 0,
+    "author": "string",
+    "text": "string",
+    "created": "2019-08-24T14:15:22Z",
+    "post": 0
 }
 ```

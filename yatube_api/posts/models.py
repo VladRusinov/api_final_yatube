@@ -37,6 +37,7 @@ class Post(models.Model):
 
     class Meta:
         default_related_name = 'posts'
+        ordering = ['pub_date']
 
     def __str__(self):
         return self.text[:TITLE_LETTER_LIMIT]
@@ -63,6 +64,9 @@ class Comment(models.Model):
     class Meta:
         default_related_name = 'comments'
 
+    def __str__(self):
+        return self.text[:TITLE_LETTER_LIMIT]
+
 
 class Follow(models.Model):
     """Модель подписки"""
@@ -78,3 +82,17 @@ class Follow(models.Model):
         on_delete=models.CASCADE,
         related_name='following'
     )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'following'], name='unique_following'
+            ),
+            models.CheckConstraint(
+                name="%(app_label)s_%(class)s_prevent_self_follow",
+                check=~models.Q(user=models.F("following")),
+            ),
+        ]
+
+    def __str__(self):
+        return self.user[:TITLE_LETTER_LIMIT]
