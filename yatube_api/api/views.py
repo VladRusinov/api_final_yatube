@@ -75,7 +75,7 @@ class FollowWiewSet(
 
     def get_queryset(self):
         """Получаем queryset с подписками пользователя"""
-        return get_object_or_404(User, id=self.request.user.id).follow
+        return get_object_or_404(User, id=self.request.user.id).follow.all()
 
     def perform_create(self, serializer):
         """Переопределение метода create"""
