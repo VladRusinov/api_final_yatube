@@ -9,7 +9,7 @@ from api.serializers import (
     GroupSerializer,
     PostSerializer,
 )
-from posts.models import Comment, Follow, Group, Post
+from posts.models import Comment, Group, Post, User
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -75,7 +75,7 @@ class FollowWiewSet(
 
     def get_queryset(self):
         """Получаем queryset с подписками пользователя"""
-        return Follow.objects.filter(user=self.request.user)
+        return get_object_or_404(User, id=self.request.user.id).follow
 
     def perform_create(self, serializer):
         """Переопределение метода create"""

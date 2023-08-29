@@ -95,4 +95,4 @@ class Follow(models.Model):
         ]
 
     def __str__(self):
-        return self.user[:TITLE_LETTER_LIMIT]
+        return (self.user + self.following)[:TITLE_LETTER_LIMIT]

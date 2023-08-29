@@ -86,3 +86,7 @@ python3 manage.py runserver
     "post": 0
 }
 ```
+
+### Автор:
+
+Автор - Русинов Влад
