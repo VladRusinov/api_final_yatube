@@ -1,3 +1,5 @@
+[![Typing SVG align="center"](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=API+YATUBE)](https://git.io/typing-svg)
+
 ### О проекте:
 Проект yatube_api реализует api для проекта yatube,
 
